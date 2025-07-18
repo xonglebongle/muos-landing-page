@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>MustardOS</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.cdnfonts.com/css/noto-sans" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 2vw;
+      color: #FFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .screen {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      max-height: 100%;
+      background-color: #222;
+      background: linear-gradient(to bottom, #444, #000);
+      border-radius: 1vw;
+      padding: 1vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header {
+      position: relative;
+      height: 2em;
+      font-size: 3vw;
+    }
+
+    .header .left {
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+    }
+
+    .header .right {
+      position: absolute;
+      right: 0.5rem;
+      top: 0;
+    }
+
+    .header .center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .battery {
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .battery i {
+      font-size: 1.2em;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      flex-grow: 1;
+      padding: 24px;
+    }
+
+    .menu-button {
+      color: #FFF;
+      text-decoration: none;
+      background-color: #444;
+      background: linear-gradient(to bottom, #555, #222);
+      border-radius: 24px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px;
+      text-align: center;
+      transition: none;
+      box-shadow: 12px 12px 0 rgba(0, 0, 0, 1);
+    }
+
+    .menu-button i {
+      font-size: 8vw;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-button .label {
+      margin-top: 8px;
+      font-size: 2vw;
+    }
+
+    .menu-button:hover {
+      background-color: #f8c400;
+      background: linear-gradient(to bottom, #EFD614, #C69200);
+      color: #000;
+    }
+
+    .footer {
+      text-align: left;
+      font-size: 3vw;
+      color: #ccc;
+    }
+
+    .circle-key {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 0.85em;
+      border-radius: 50%;
+      background-color: #f8c400;
+      color: #000;
+      text-align: center;
+      margin-right: 0.25em;
+      font-size: 0.8em;
+    }
+
+    @media (max-width: 768px) {
+      .screen {
+        border-radius: 4vw;
+        padding: 0;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .menu-button {
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
+      }
+      .menu-button .label {
+        font-size: 4vw;
+      }
+      .menu-button.tapped {
+        background: linear-gradient(to bottom, #f8c400, #aa8300);
+        color: #000;
+      }
+      .header {
+        display: none;
+      }
+      .footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="screen">
+    <div class="header">
+      <span id="time" class="left">00:00</span>
+      <span class="center title">MAIN MENU</span>
+      <span class="right battery" id="battery"><i class="fas fa-battery-full"></i></span>
+    </div>
+
+    <div class="menu-grid">
+      <a href="#download" class="menu-button"><i class="fas fa-download"></i><span class="label">Download</span></a>
+      <a href="#hotkeys" class="menu-button"><i class="fas fa-keyboard"></i><span class="label">Hotkeys</span></a>
+      <a href="#guides" class="menu-button"><i class="fas fa-book-open"></i><span class="label">Guides</span></a>
+      <a href="#themes" class="menu-button"><i class="fas fa-paint-brush"></i><span class="label">Themes</span></a>
+      <a href="#systems" class="menu-button"><i class="fas fa-tv"></i><span class="label">Systems</span></a>
+      <a href="#social" class="menu-button"><i class="fas fa-users"></i><span class="label">Social</span></a>
+      <a href="https://shop.muos.dev" class="menu-button"><i class="fas fa-tshirt"></i><span class="label">Merch</span></a>
+      <a href="#about" class="menu-button"><i class="fas fa-circle-info"></i><span class="label">About</span></a>
+    </div>
+
+    <div class="footer">
+      <span class="circle-key">A</span> Select
+    </div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      const isPM = hours >= 12;
+      hours = hours % 12 || 12;
+      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
+      document.getElementById("time").textContent = formattedTime;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function getBatteryIcon(level, charging) {
+      if (charging) return 'fa-bolt';
+      if (level >= 90) return 'fa-battery-full';
+      if (level >= 60) return 'fa-battery-three-quarters';
+      if (level >= 30) return 'fa-battery-half';
+      if (level >= 10) return 'fa-battery-quarter';
+      return 'fa-battery-empty';
+    }
+
+    function updateBatteryStatus(battery) {
+      const level = Math.round(battery.level * 100);
+      const charging = battery.charging;
+      const iconClass = getBatteryIcon(level, charging);
+      const batterySpan = document.getElementById("battery");
+      batterySpan.innerHTML = `<i class="fas ${iconClass}"></i> ${level}%`;
+    }
+
+    if ('getBattery' in navigator) {
+      navigator.getBattery().then(battery => {
+        updateBatteryStatus(battery);
+        battery.addEventListener('levelchange', () => updateBatteryStatus(battery));
+        battery.addEventListener('chargingchange', () => updateBatteryStatus(battery));
+      });
+    } else {
+      document.getElementById("battery").innerHTML = `<i class="fas fa-battery-full"></i>`;
+    }
+
+    let lastTapped = null;
+
+    document.querySelectorAll('.menu-button').forEach(button => {
+      button.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+
+          if (lastTapped === this) {
+            window.location.href = this.getAttribute('href');
+          } else {
+            document.querySelectorAll('.menu-button').forEach(btn => btn.classList.remove('tapped'));
+            this.classList.add('tapped');
+            lastTapped = this;
+          }
+        }
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.menu-button')) {
+        document.querySelectorAll('.menu-button').forEach(btn => btn.classList.remove('tapped'));
+        lastTapped = null;
+      }
+    });
+  </script>
+</body>
+
+</html>
