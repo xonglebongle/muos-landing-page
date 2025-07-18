@@ -1,0 +1,162 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 2vw;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.screen {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    max-height: 100%;
+    background: #222 linear-gradient(to bottom, #444, #000);
+    border-radius: 1vw;
+    padding: 1vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    position: relative;
+    height: 2em;
+    font-size: 3vw;
+}
+
+.header .left {
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+}
+
+.header .right {
+    position: absolute;
+    right: 0.5rem;
+    top: 0;
+}
+
+.header .center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+}
+
+.title {
+    text-align: center;
+}
+
+.battery {
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.battery i {
+    font-size: 1.2em;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    flex-grow: 1;
+    padding: 24px;
+}
+
+.menu-button {
+    color: #FFF;
+    text-decoration: none;
+    background: #444 linear-gradient(to bottom, #555, #222);
+    border-radius: 24px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px;
+    text-align: center;
+    transition: none;
+    box-shadow: 12px 12px 0 rgba(0, 0, 0, 1);
+}
+
+.menu-button i {
+    font-size: 8vw;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-button .label {
+    margin-top: 8px;
+    font-size: 2vw;
+}
+
+.menu-button:hover {
+    background: #F8C400 linear-gradient(to bottom, #F8C400, #AA8300);
+    color: #000;
+}
+
+.footer {
+    text-align: left;
+    font-size: 3vw;
+    color: #ccc;
+}
+
+.circle-key {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 0.85em;
+    border-radius: 50%;
+    background-color: #f8c400;
+    color: #000;
+    text-align: center;
+    margin-right: 0.25em;
+    font-size: 0.8em;
+}
+
+@media (max-width: 768px) {
+    .screen {
+        border-radius: 4vw;
+        padding: 0;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .menu-button {
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 1);
+    }
+
+    .menu-button .label {
+        font-size: 4vw;
+    }
+
+    .menu-button.tapped {
+        background: #F8C400 linear-gradient(to bottom, #F8C400, #AA8300);
+        color: #000;
+    }
+
+    .header {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+}
