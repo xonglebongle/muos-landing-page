@@ -11,55 +11,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" href="muOS.css">
-    <script src="muOS.js"></script>
 </head>
 
 <body>
-    <div class="screen">
-        <div class="header">
-            <span id="time" class="left">00:00</span>
-            <span class="center title">MAIN MENU</span>
-            <span class="right battery" id="battery"><i class="fas fa-battery-full"></i></span>
-        </div>
+<div id="splash" style="display: none;">
+    <img src="https://raw.githubusercontent.com/MustardOS/asset/main/mustardOS%20-%20Swirl%20Logo%20-%20Colour.svg"
+         alt="muOS Logo" style="width: 80%"/>
+</div>
 
-        <div class="menu-grid">
-            <a href="#" class="menu-button">
-                <i class="fas fa-download"></i><span class="label">Download</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-keyboard"></i><span class="label">Hotkeys</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-book-open"></i><span class="label">Guides</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-paint-brush"></i><span class="label">Themes</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-tv"></i><span class="label">Systems</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-users"></i><span class="label">Social</span>
-            </a>
-
-            <a href="https://shop.muos.dev" class="menu-button">
-                <i class="fas fa-tshirt"></i><span class="label">Merch</span>
-            </a>
-
-            <a href="#" class="menu-button">
-                <i class="fas fa-circle-info"></i><span class="label">About</span>
-            </a>
-        </div>
-
-        <div class="footer">
-            <span class="circle-key">A</span> Select
-        </div>
+<div class="screen">
+    <div class="header">
+        <span id="time" class="left"></span>
+        <span class="center title">MustardOS</span>
+        <span class="right battery" id="battery"><i class="fas fa-battery-full"></i></span>
     </div>
+
+    <div class="menu-grid">
+        <a href="#" class="menu-button">
+            <i class="fas fa-download"></i><span class="label">Download</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-keyboard"></i><span class="label">Hotkeys</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-book-open"></i><span class="label">Guides</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-paint-brush"></i><span class="label">Themes</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-tv"></i><span class="label">Systems</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-users"></i><span class="label">Social</span>
+        </a>
+
+        <a href="https://shop.muos.dev" class="menu-button">
+            <i class="fas fa-tshirt"></i><span class="label">Merch</span>
+        </a>
+
+        <a href="#" class="menu-button">
+            <i class="fas fa-circle-info"></i><span class="label">About</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        <span class="circle-key">A</span> Select
+    </div>
+</div>
+
+<script src="muOS.js"></script>
 </body>
 
 </html>

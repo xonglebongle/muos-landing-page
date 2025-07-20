@@ -62,3 +62,14 @@ document.addEventListener('click', function (e) {
         lastTapped = null;
     }
 });
+
+window.addEventListener("DOMContentLoaded", () => {
+    if (!sessionStorage.getItem("splashShown")) {
+        const splash = document.getElementById("splash");
+        if (splash) {
+            splash.style.display = "flex";
+            sessionStorage.setItem("splashShown", "1");
+            setTimeout(() => splash.remove(), 2500);
+        }
+    }
+});
